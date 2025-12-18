@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-from secret import api_key
+from SECRET import api_key
 
 
 if "logged_in" not in st.session_state:
@@ -25,7 +25,6 @@ if not st.session_state.logged_in and not st.session_state.logout:
 
 elif st.session_state.logged_in:
     
-    st.sunny()
     st.title("Weather App 🌤")
 
     city = st.text_input("Enter City Name")
