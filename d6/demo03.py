@@ -1,4 +1,3 @@
-
 from langchain.chat_models import init_chat_model
 from langchain.agents import create_agent
 from langchain.tools import tool
@@ -18,34 +17,33 @@ def calculator(expression):
     except:
         return "Error: Cannot solve expression"
 
-# create model
-llm = init_chat_model(
-    model = "google/gemma-3-4b",
-    model_provider = "openai",
-    base_url = "http://127.0.0.1:1234/v1",
-    api_key = "non-needed"
+llm=init_chat_model(
+       model="qwen/qwen3-4b",
+       model_provider="openai",
+       base_url="http://127.0.0.1:1234/v1",
+       api_key="local-api-key"
 )
 
-# create agent
-agent = create_agent(
-            model=llm, 
-            tools=[
-                calculator
-            ],
-            system_prompt="You are a helpful assistant. Answer in short."
-        )
+conversation=[]
+
+agent=create_agent(
+       model=llm,
+       tools=[calculator],
+       system_prompt="You are a helpful assistant. Answer in short."
+
+)
 
 while True:
-    # take user input
-    user_input = input("You: ")
-    if user_input == "exit":
-        break
-    # invoke the agent with user input
-    result = agent.invoke({
+       user_input=input("You:")
+       if user_input.lower()=="exit":
+            break
+       conversation.append({"role":"user:","content":user_input})
+       result = agent.invoke({
         "messages": [
             {"role": "user", "content": user_input}
         ]
-    })
-llm_output = result["messages"][-1]
-print("AI: ", llm_output.content)
-print("\n\n", result["messages"])
+     })
+       llm=result["messages"][-1]
+       print("AI:",llm.content)
+       print("\n\n", result["messages"])
+

@@ -2,7 +2,7 @@ from langchain.chat_models import init_chat_model
 from langchain.agents import create_agent
 
 llm = init_chat_model(
-    model="microsoft/phi-4-mini-reasoning",
+    model="lmstudio-community/Llama-3.2-1B-Instruct-GGUF",
     model_provider="openai",
     base_url="http://127.0.0.1:1234/v1",   
     api_key="lm-studio"                   
