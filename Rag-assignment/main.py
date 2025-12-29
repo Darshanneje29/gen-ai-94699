@@ -88,7 +88,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("AI Resume Shortlisting System")
+st.title(" Resume_chatbot")
 st.caption(
     "Upload resumes, index them using embeddings + ChromaDB, "
     "and shortlist candidates with AI explanations."
